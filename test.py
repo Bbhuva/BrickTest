@@ -3,14 +3,14 @@ import re
 import os.path
 import matplotlib.pyplot as plt
 import plotly.graph_objs as go
-from plotly.offline import iplot
+from plotly.offline import plot
 
 import seaborn as sns
 
 
 def operationOption():
     print('\nOptions:\n\t 1 - Input a CSV file and convert it to JSON')
-    print('\t 2 - Input a CSV file and generate a SQL insert statement for all rows in the input')
+    print('\t 2 - Input a CSV file and generate a SQL insert statement')
     print('\t 3 - Input a CSV file and present a data summary')
     print('\t 0 - Quit')
 
@@ -113,6 +113,7 @@ while operating:
         plt.legend(bbox_to_anchor=(1, 1), loc=2, borderaxespad=0)
         plt.xlabel('Operating Systems')
         plt.ylabel('User Count')
+        plt.savefig('User Destribution by OS.png')
 
         # Users by Country and Device OS
         f2 = plt.figure(2, figsize=[10, 6])
@@ -121,6 +122,7 @@ while operating:
         plt.title('Application use by country')
         plt.xlabel('Country')
         plt.ylabel('User Count')
+        plt.savefig('Application use by country.png')
 
         # Top Device Brands Used by Users
         f3 = plt.figure(3, figsize=[10, 6])
@@ -129,12 +131,14 @@ while operating:
         plt.title('Top Device Brands')
         plt.xlabel('User Count')
         plt.ylabel('Brands')
+        plt.savefig('Top Device Brands.png')
 
         # Users by Device Type
         f4 = plt.figure(4, figsize=[10, 6])
         df['device_category'].value_counts().plot.pie(autopct="%.1f%%")
         plt.title("User base by device type", fontsize=14)
         plt.ylabel('')
+        plt.savefig('User base by device type.png')
 
         # User connection based on dates
         f5 = plt.figure(5, figsize=[10, 6])
@@ -148,6 +152,7 @@ while operating:
         plt.xticks(rotation=0)
         plt.xlabel('Dates User Joined')
         plt.ylabel('User Count')
+        plt.savefig('User Account by date.png')
 
         # Users by country on map
         data = dict(
@@ -163,7 +168,7 @@ while operating:
                                projection={'type': 'natural earth'})
                       )
         choromap = go.Figure(data=[data], layout=layout)
-        iplot(choromap, validate=False)
+        plot(choromap, validate=False)
 
         plt.show()
 
