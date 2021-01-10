@@ -240,6 +240,8 @@ while operating:
         choromap = go.Figure(data=[data], layout=layout)
         # generate local map
         plot(choromap, validate=False)
+        print(
+            f'Get Visualisation files at {os.path.dirname(os.path.abspath(__file__))}')
 
         plt.show()
 
